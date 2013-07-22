@@ -23,7 +23,7 @@
 		
 	 
 		<a href="index.html" data-rel="back" data-icon="arrow-l" data-iconpos="notext" data-ajax="false">Back</a>
-		<a href="create.html" data-icon="arrow-plus" data-iconpos="notext" data-ajax="true">Add</a>
+		<a href="#" data-icon="arrow-plus" id="addProduct" data-iconpos="notext" data-ajax="true">Add</a>
 	</div><!-- /header -->
 	
 	<div data-role="content"> 
@@ -57,7 +57,7 @@ function successFunction(data){
      var html ='';	 
      $.each(data, function(index, item) {
 	 var url="Edit.html?id="+item.ProductID+"&name="+item.ProductName+"&up="+item.UnitPrice+"&qpu="+item.QuantityPerUnit+"&Discontinued="+item.Discontinued;
-         html += '<li><a href="'+ url +'">' + item.ProductName+ '</a></li>';
+         html += '<li><a href="#" tag="'+ url +'" onClick="redirectToEdit(this)">' + item.ProductName+ '</a></li>';
      });
 	 $('#ul_id').empty();
     $('#ul_id').append($(html));
@@ -65,9 +65,20 @@ function successFunction(data){
     $('#ul_id').listview('refresh');
 
 }
+
+$("#addProduct").click(function()
+{
+   window.location.href="Create.html";
+});
+
+	
 });
   
-
+function redirectToEdit(url)
+	{
+		//alert();
+		window.location.href=$(url).attr("tag");
+	}
 
 </script>
 
